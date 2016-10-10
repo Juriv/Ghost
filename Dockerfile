@@ -33,7 +33,7 @@ RUN buildDeps=' \
 	&& unzip ghost.zip \
 	&& npm install --production \
 	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
-	&& sudo rm ghost.zip \
+	&& rm ghost.zip \
 	&& npm cache clean \
 	&& sudo rm -rf /tmp/npm*
 
