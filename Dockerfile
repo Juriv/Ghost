@@ -41,7 +41,7 @@ ENV GHOST_CONTENT /var/lib/ghost
 RUN mkdir -p "$GHOST_CONTENT" && chown -R user:user "$GHOST_CONTENT"
 VOLUME $GHOST_CONTENT
 
-COPY file:c0bc882b990efd55f75953224ed07d533c09aeac8158a4698a92e623b1c79ce9 in /entrypoint.sh 
+COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 2368
