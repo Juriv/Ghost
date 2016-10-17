@@ -29,13 +29,11 @@ test:
   post:
     - docker run -d -p 3000:3000 -e "SECRET_KEY_BASE=abcd1234" gcr.io/${PROJECT_NAME}/myghost:$CIRCLE_SHA1; sleep 10
     - sudo /opt/google-cloud-sdk/bin/gcloud docker push gcr.io/${PROJECT_NAME}/myghost:$CIRCLE_SHA1
-    - sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
-    - kubectl patch deployment myghost -p '{"spec":{"template":{"spec":{"containers":[{"name":"myghost","image":"gcr.io/${PROJECT_NAME}/myghost:$CIRCLE_SHA1"}]}}}}'
 
-    # - curl --retry 10 --retry-delay 5 -v http://localhost:3000
-
-# deployment:
-#   prod:
-#     branch: master
-#     commands:
-#       - ./deploy.sh
+deployment:
+  prod:
+    branch: master
+    commands:
+      # - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS $EXTERNAL_REGISTRY_ENDPOINT
+      # - envsubst < .kubernetes_auth.template > ~/.kubernetes_auth
+      - ./deploy.sh
