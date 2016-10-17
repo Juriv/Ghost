@@ -1,4 +1,3 @@
-# deploy.sh
 #!/bin/bash
 
 # Exit on any error
